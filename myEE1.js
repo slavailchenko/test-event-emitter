@@ -6,34 +6,23 @@ class myEE {
 	}
 
 	addListener (label, cb) {
-		if (this.listenerCount(label) < this.maxListeners) {
-			this.listeners.has(label) || this.listeners.set(label, []);
-			this.listeners.get(label).push(cb);
-			console.log (`Added ${cb} in ${label}`);
-		} else {
-			console.log(`Number of handlers exceeded`);
-		}
+		cb.listenerEvent = false;
+		(this.listeners.has(label) || this.listeners.set(label, [])) && 
+		(this.maxListeners > this.listenerCount(label)) ? 
+		this.listeners.get(label).push(cb) || this.listeners.set(label, []) : 
+		console.log(`Number of handlers exceeded`);
 	}
 
 	on (label, cb) {
-		if (this.listenerCount(label) < this.maxListeners) {
-			this.listeners.has(label) || this.listeners.set(label, []);
-			this.listeners.get(label).push(cb);
-			console.log (`Added ${cb} in ${label}`);
-		} else {
-			console.log(`Number of handlers exceeded`);
-		}
+		this.addListener(label, cb);
 	}
 
 	once (label, cb) {
-		if (this.listenerCount(label) < this.maxListeners) {
-			this.listeners.has(label) || this.listeners.set(label, []);
-			this.listeners.get(label).push(cb);
-			console.log (`Added ${cb} in ${label}`);
-			cb.listenerEvent = false;
-		} else {
-			console.log(`Number of handlers exceeded`);
-		}
+		(this.listeners.has(label) || this.listeners.set(label, [])) && 
+		(this.maxListeners > this.listenerCount(label)) ? 
+		(cb.listenerEvent = true) && 
+		(this.listeners.get(label).push(cb)) || this.listeners.set(label, []) : 
+		console.log(`Number of handlers exceeded`);
 	}
 
 	removeListener (label, cb) {
@@ -63,9 +52,7 @@ class myEE {
 
   	removeAllListeners ([...labels]) {
 
-		let listeners = labels.map(item => this.listeners.get(item));
-
-  		for (let i=0; i<listeners.length; i++) {
+  		for (let i=0; i<labels.length; i++) {
   			if (this.listeners.has(labels[i])) {
   				this.listeners.delete(labels[i]);
   				console.log (`Removed listeners from ${labels[i]}`);
@@ -78,18 +65,15 @@ class myEE {
 	eventNames() {
 		let arr = [...this.listeners.keys()];
 		console.log(`Array of events ${arr}`);
-		return arr;
+		return [...this.listeners.keys()];
      }
 
     listenersArr (label) {
-        let arr = this.listeners.get(label);
-        return arr;
+        return this.listeners.get(label);
     }
 
     listenerCount(label) {
-    	let res = this.listenersArr(label);
-    	// console.log (`Count for event ${label}: ${res}`)
-    	if (res) return res.length
+    	if (this.listenersArr(label)) return this.listenersArr(label).length
     		else return 0;
     }
 
@@ -107,15 +91,10 @@ class myEE {
   		if (listeners && listeners.length) {
   			listeners.forEach((listener) => {
 
-  			if (listener.hasOwnProperty('listenerEvent') && 
-  				listener.listenerEvent === true) {
+  			if (listener.listenerEvent == true) {
   				this.removeListener (label, listener)	
   			};
 
-  			if (listener.hasOwnProperty('listenerEvent') && 
-  				listener.listenerEvent === false) {
-  				listener.listenerEvent = true;
-  			}
   			listener(...args);
   		});
   			return true;
