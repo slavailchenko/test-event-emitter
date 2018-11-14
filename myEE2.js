@@ -2,6 +2,7 @@
 const EventEmitter = require('events');
 
 class ValueChanger extends EventEmitter {
+
 	constructor (name, isInc, min, max) {
 		super ();
 		this.name = name;
