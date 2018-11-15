@@ -1,8 +1,13 @@
+const express = require('express');
 const fs = require('fs');
+const {Transform} = require('stream');
+const JSONStream = require('JSONStream');
+const es = require('event-stream');
+const csv = require('csv');
+
+// const oppressor = require('oppressor');
 // const bodyparser = require('body-parser');
 const crypto = require('crypto');
-// const jsonfile = require('jsonfile');
-// const json2csv = require('json2csv');
 
 function scheduleGc () {
 	
@@ -41,18 +46,24 @@ fs.stat('cars.csv', ((err, stat) => {
 })
 );
 
-const readFile = (fileName, type) => {
-	return new Promise((res, rej) => {
-		fs.readFile(fileName, type, (err, data) => {
-			if (err) throw new err;
-			let dataJSON = JSON.parse(data);
-			console.log (dataJSON);
-			res(dataJSON);
-		});
-	});
-};
+es.pipeline(
+	fs.createReadStream('cars1.json'),
+	JSONStream.parse(),
+	es.map((data, next) => {
+
+		data.hash = 33333;
+		console.log(data);
+		console.log(next);
+
+		next(null, [data])
+	}),
+	csv().to('cars1.csv')
+	);
+
+// const stream = fs.createReadStream('cars.json', {bufferSize: 64 * 1024})
+// let data = stream.pipe(process.stdout);
+// console.log(stream);
 
 scheduleGc ();
-readFile('cars.json', 'utf8');
 
 
