@@ -4,8 +4,7 @@ const stream = require('stream');
 const JSONStream = require('JSONStream');
 const jsonToCsv = require("json-to-csv-stream");
 const Converter=require("csvtojson").Converter;
-const csvConverter=new Converter({output: "csv", });
-// const csvToJSON = require('csvtojson');
+const csvConverter=new Converter({});
 const crypto = require('crypto');
 
 function scheduleGc () {
