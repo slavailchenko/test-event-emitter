@@ -40,7 +40,6 @@ pipe(
 			const { make, model, displayName, dealershipId } = chunk;
 			chunk.hash = crypto.createHash('md5').update(make + model + displayName + dealershipId).digest('hex');
 			callback(null, JSON.stringify(chunk));
-			// console.log(chunk);
 		}
 	})
 	).pipe(jsonToCsv()).
@@ -62,7 +61,13 @@ on('finish', () => {
         		buff.vehicleId = Array(8).join().replace(/(.|$)/g, () => {
         			return ((Math.random()*36)|0).toString(36)
         		});
-        		callback(null, JSON.stringify(buff))
+        		let str;
+        		if (buff.id == 1) {	
+        			str = '['+'\r\n'+JSON.stringify(buff)+','+'\r\n';
+        		} else if (buff.id == 284070) {
+        			str = JSON.stringify(buff)+'\r\n'+']';
+        		} else str = JSON.stringify(buff)+','+'\r\n';
+        		callback(null, str);
         	}
         })
       ).pipe(
