@@ -26,29 +26,21 @@ class myEE {
 	}
 
 	removeListener (label, cb) {
+
 		let listeners = this.listeners.get(label),
 		index;
-		
-		let isFunction = function(obj) {
-			return typeof obj == 'function' || false;
-		};
 
-		if (listeners && listeners.length) {
-			index = listeners.reduce((i, listener, index) => {
-				return (isFunction(listener) && listener === cb) ?
-				i = index : i;
-			}, -1);
-          
-          if (index > -1) {
-          	listeners.splice(index, 1);
-          	console.log (`${cb} from ${label} is now removed`);
-          	this.listeners.set(label, listeners);
-          	return true;
-          }
+    if (listeners) {
+      index = listeners.findIndex(el => el == cb)
+      if (index > -1) {
+        listeners.splice(index, 1);
+        console.log (`${cb} from ${label} is now removed`);
+        this.listeners.set(label, listeners);
       }
+    } else {
       console.log (`${cb} from ${label} is not founded`);
-      return false;
-  	}
+    }
+  }
 
   	removeAllListeners ([...labels]) {
 
