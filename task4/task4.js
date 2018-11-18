@@ -11,13 +11,13 @@ app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 app.get('/cars', ((req, res, next) => {
-    if (req.path == '/cars') {
+    try {
         const src = fs.createReadStream('../task3/cars1.json');
         src.pipe(res);
-    } else {
-        next();
+    } catch (err) {
+        next (err);
     }
-})
+    })
 );
 
 app.listen(8081, err => {
