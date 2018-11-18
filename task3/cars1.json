@@ -1,0 +1,121 @@
+[
+    {
+        "make" : "Toyota",
+        "model" : "Tundra",
+        "displayName" : "Toyota Tundra SR5",
+        "year" : 2018,
+        "dealershipId" : 100155
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox Premier 1LZ",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 2LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox Premier 1LZ",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox Premier 1LZ",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Equinox",
+        "displayName" : "Chevrolet Equinox LT 1LT",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Silverado 2500HD",
+        "displayName" : "Chevrolet Silverado 2500HD LTZ 1LZ",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Chevrolet",
+        "model" : "Silverado 2500HD",
+        "displayName" : "Chevrolet Silverado 2500HD LTZ 1LZ",
+        "year" : 2019,
+        "dealershipId" : 113
+    },
+    {
+        "make" : "Jeep",
+        "model" : "Wrangler Unlimited",
+        "displayName" : "Jeep Wrangler Unlimited Sport S",
+        "year" : 2018,
+        "dealershipId" : 100150
+    }
+    ]
