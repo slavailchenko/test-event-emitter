@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 app.get('/cars', ((req, res, next) => {
     try {
-        const src = fs.createReadStream('../task3/cars1.json');
+        const src = fs.createReadStream('../task3/cars.json');
         src.pipe(res);
     } catch (err) {
         next (err);

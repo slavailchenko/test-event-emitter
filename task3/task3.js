@@ -29,6 +29,7 @@ const fileRemove = (file) => {
 };
 
 fileRemove('cars.csv');
+let i;
 
 fs.createReadStream('cars.json', { highWaterMark: 4096 }).
 pipe(JSONStream.parse('*')).
@@ -37,9 +38,11 @@ pipe(
 		objectMode: true,
 		highWaterMark: 4,
 		transform: (chunk, encode, callback) => {
+      i = ++i || 1;
 			const { make, model, displayName, dealershipId } = chunk;
 			chunk.hash = crypto.createHash('md5').update(make + model + displayName + dealershipId).digest('hex');
-			callback(null, JSON.stringify(chunk));
+			// console.log (i);
+      callback(null, JSON.stringify(chunk));
 		}
 	})
 	).pipe(jsonToCsv()).
@@ -64,19 +67,20 @@ on('finish', () => {
         		let str;
         		if (buff.id == 1) {	
         			str = '['+'\r\n'+JSON.stringify(buff)+','+'\r\n';
-        		} else if (buff.id == 284070) {
+        		} else if (buff.id == i) {
         			str = JSON.stringify(buff)+'\r\n'+']';
         		} else str = JSON.stringify(buff)+','+'\r\n';
         		callback(null, str);
         	}
         })
-      ).pipe(
+      ).
+  pipe(
       fs.createWriteStream('cars2.json', {
       	highWaterMark: 2048
       })
       ).
-      on('finish', () => {
-      	clearInterval (isTimeUsedMemory);
-        console.log ('All completed');
-      });
+  on('finish', () => {
+    clearInterval (isTimeUsedMemory);
+    console.log ('All completed');
   });
+});
